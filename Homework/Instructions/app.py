@@ -29,12 +29,12 @@ app = Flask(__name__)
 def index():
     return(
         f"<bold>Welcome to the Hawaiian Climate API!<br/><br/></bold>"
-        f" Available Routes:<br/>"
-        f" /api/v1.0/precipitation<br/>"
+        f"Available Routes:<br/>"
+        f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations</br>"
         f"/api/v1.0/tobs</br>"
-        f"api/v1.0/'startdate as 2017-8-23'</br>"
-        f"/api/v1.0/'startdate as 2017-8-23'/'enddate as 2017-9-7'<br>"
+        f"/api/v1.0/startdate</br>"
+        f"/api/v1.0/startdate/enddate<br>"
     )
 @app.route('/api/v1.0/precipitation')
 def precipitation():
@@ -44,7 +44,7 @@ def precipitation():
                         order_by(Measurement.date).all()
 #convert the query results to a dict using date as the key and prcp as the value
  
-    #prep_dict = dict(year_ago_prcp)
+    prep_dict = dict(year_ago_prcp)
     prcp_dict = {}
     for rain in year_ago_prcp:
      prcp_dict[str(rain.date)] = rain.prcp
